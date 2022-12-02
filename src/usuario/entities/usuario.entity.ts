@@ -1,6 +1,6 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 @Entity()
-export class Usuario {
+class Usuario {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -22,3 +22,5 @@ export class Usuario {
   @Column({ type: 'date' })
   birthday: string;
 }
+
+export default Usuario;

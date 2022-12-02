@@ -1,4 +1,4 @@
-export class CreateUsuarioDto {
+export interface IUserInput {
   name: string;
   cpf: string;
   email: string;
