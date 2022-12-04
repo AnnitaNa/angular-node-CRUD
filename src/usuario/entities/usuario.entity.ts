@@ -1,6 +1,14 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  CreateDateColumn,
+  UpdateDateColumn,
+} from 'typeorm';
+import { IUser } from '../interface/IUser';
+
 @Entity()
-class Usuario {
+class Usuario implements IUser {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -21,6 +29,12 @@ class Usuario {
 
   @Column({ type: 'date' })
   birthday: string;
+
+  @CreateDateColumn({ name: 'created_at' })
+  createdAt: Date;
+
+  @UpdateDateColumn({ name: 'updated_at' })
+  updatedAt: Date;
 }
 
 export default Usuario;

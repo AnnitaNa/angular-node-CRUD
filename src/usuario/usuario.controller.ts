@@ -7,11 +7,13 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
+
 import { UsuarioService } from './usuario.service';
 import { CreateUsuarioDto } from './dto/create-usuario.dto';
 import { UpdateUsuarioDto } from './dto/update-usuario.dto';
 
 @Controller('usuario')
+//route: ..../usuario
 export class UsuarioController {
   constructor(private readonly usuarioService: UsuarioService) {}
 
@@ -40,3 +42,13 @@ export class UsuarioController {
     return this.usuarioService.remove(id);
   }
 }
+
+/*******COMMENTS*******
+
+ 1) @Params:
+  - From Query
+
+ 2) @Body:
+  - From body
+
+ */

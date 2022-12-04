@@ -1,12 +1,14 @@
 import { Injectable } from '@nestjs/common';
-import { CreateUsuarioDto } from './dto/create-usuario.dto';
-import { UpdateUsuarioDto } from './dto/update-usuario.dto';
-import Usuario from './entities/usuario.entity';
 import { InjectRepository } from '@nestjs/typeorm/dist';
 import { Repository, UpdateResult, DeleteResult } from 'typeorm';
 
+import { CreateUsuarioDto } from './dto/create-usuario.dto';
+import { UpdateUsuarioDto } from './dto/update-usuario.dto';
+import Usuario from './entities/usuario.entity';
+import { IUserRepository } from './interface/IUserRepository.interface';
+
 @Injectable()
-export class UsuarioService {
+export class UsuarioService implements IUserRepository {
   constructor(
     @InjectRepository(Usuario) private usuarioRepository: Repository<Usuario>,
   ) {}
