@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { IUsuario } from 'src/app/models/usuario.model';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-all-users',
@@ -8,26 +9,24 @@ import { IUsuario } from 'src/app/models/usuario.model';
 })
 export class AllUsersComponent {
 
-  title = 'crud';
-  usuarios: IUsuario[] = [
-    {
-      id: "1",
-      name: "User 01",
-      cpf: "xxx",
-      email: "xxxx",
-      phone: "xxx",
-      gender: "xxxx",
-      birthday: 'Xxxx'
-    },
-    {
-      id: "2",
-      name: "User 02",
-      cpf: "xxx",
-      email: "xxxx",
-      phone: "xxx",
-      gender: "xxxx",
-      birthday: 'Xxxx'
-    }
-  ]
+  usuarios: IUsuario[] = []
 
+  constructor(private userService: UsuarioService) {}
+
+  ngOnInit(): void {
+    this.getUsuarios();
+  }
+
+  getUsuarios() {
+    this.userService.findAll().subscribe(res => {
+      this.usuarios = res
+    })
+  }
+
+
+  deletarUsuario(id: string) {
+    this.userService.remove(id).subscribe(res => {console.log(res)})
+    window.location.reload();
+  }
+  
 }

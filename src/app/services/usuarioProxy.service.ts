@@ -5,7 +5,7 @@ import { IUsuario } from '../models/usuario.model';
 import { IUsuarioInput } from '../models/usuarioInput.model';
 
 
-const baseUrl: string = 'http://localhost:4200/usuario';
+const baseUrl: string = 'http://localhost:3000/usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class UsuarioProxyService {
   }
 
   update(id: string, data: IUsuarioInput): Observable<any> {
-    return this.http.put(`${baseUrl}/${id}`, data);
+    return this.http.patch(`${baseUrl}/${id}`, data);
   }
 
   remove(id: string): Observable<any> {

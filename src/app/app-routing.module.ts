@@ -5,10 +5,11 @@ import { CreateUpdateUserComponent } from './component/create-update-user/create
 
 const routes: Routes = [
   { path: '', component: AllUsersComponent},
-  { path: 'usuario', component: CreateUpdateUserComponent },
+  { path: 'usuario', component: CreateUpdateUserComponent},
+  { path: 'usuario/:id', component: CreateUpdateUserComponent},
 
     // otherwise redirect to home
-  { path: '**', redirectTo: '' }
+  //{ path: '**', redirectTo: '' }
 ];
 
 @NgModule({

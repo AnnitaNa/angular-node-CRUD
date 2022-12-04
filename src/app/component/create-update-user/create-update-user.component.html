@@ -47,15 +47,8 @@
             </div>
             <div class="form-group col d-flex flex-column">
                 <label for="gender">Gênero</label>
-                <select class="form-control" id="gender" formControlName="gender" required="">
-                  <option>Mulher trans</option>
-                  <option>Mulher cis</option>
-                  <option>Homem trans </option>
-                  <option>Homem cis</option>
-                  <option>Travesti</option>
-                  <option>Não binário</option>
-                  <option>Prefiro não revelar</option>
-                  <option>Outros</option>
+                <select  class="form-control" id="gender" formControlName="gender" required="">
+                  <option *ngFor=" let gender of genders">{{gender}}</option>
                 </select>
                 <span class="text-danger"
                 *ngIf="formControls['gender'].touched && formControls['gender'].errors">
@@ -66,11 +59,6 @@
               <div class="d-flex justify-content-end my-5">
                 <button [disabled] ='!userForm.valid' type="submit" class="btn btn-primary">Salvar</button>
               </div>
-                
-    
-    
 </form>
-<div>
-    {{data}}
-</div>
+
 

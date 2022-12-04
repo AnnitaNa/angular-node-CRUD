@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {  AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { IUsuario } from 'src/app/models/usuario.model';
 import { IUsuarioInput } from 'src/app/models/usuarioInput.model';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-create-update-user',
@@ -10,14 +12,32 @@ import { IUsuarioInput } from 'src/app/models/usuarioInput.model';
 })
 export class CreateUpdateUserComponent implements OnInit {
 
-  submitted = false;
- 
+  id!: string | null;
   userForm!: FormGroup;
-  data: string = '';
-  constructor(private formBuild: FormBuilder) { }
+
+  genders: Array<string> = [
+    'Mulher trans',
+    'Mulher cis',
+    'Homem trans',
+    'Homem cis',
+    'Travesti',
+    'Não binário',
+    'Prefiro não revelar',
+    'Outros'
+  ]
+
+  constructor(
+    private formBuild: FormBuilder,
+    private userService: UsuarioService,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
     this.creatUpdateUserForm();
+    this.id = this.route.snapshot.paramMap.get('id') //get the id from route parameter (decided name "id" at the router)
+    if(this.id) {
+      this.findUser(this.id)
+    }
   }
 
   get formControls(): { [key: string]: AbstractControl; } {
@@ -33,14 +53,30 @@ export class CreateUpdateUserComponent implements OnInit {
       gender: ['', Validators.required],
       birthday: ['', Validators.required],
     })
+  }
 
+  findUser(id:string) {
+   return this.userService.findOne(id).subscribe(user => this.fillForm(user))
+  }
+
+  fillForm(user: IUsuario) {
+    this.userForm.setValue({
+      name: user.name,
+      cpf: user.cpf,
+      email: user.email,
+      phone: user.phone,
+      gender: user.gender,
+      birthday: user.birthday.split('/').reverse().join('-')
+    })
   }
 
   save() {
-    this.submitted = true;
-
-  console.log(this.userForm)
-    this.data = JSON.stringify(this.userForm.value);
+    let data: IUsuarioInput = this.userForm.value;
+    this.id
+      ? this.userService.update(this.id, data).subscribe()
+      : this.userService.create(data).subscribe();
   }
+
+  
 
 }
