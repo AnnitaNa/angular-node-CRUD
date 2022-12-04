@@ -1,0 +1,26 @@
+<a routerLink="usuario" class="btn btn-sm btn-success mb-2">Adicionar Usuário</a>
+    <table class="table">
+      <thead>
+        <tr >
+          <th scope="col">Id</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Email</th>
+          <th scope="col">CPF</th>
+          <th scope="col">Nascimento</th>
+          <th scope="col">Gênero</th>
+          <th scope="col">Telefone</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios">
+          <td>{{usuario.id}}</td>
+          <td>{{usuario.name}}</td>
+          <td>{{usuario.email}}</td>
+          <td>{{usuario.cpf}}</td>
+          <td>{{usuario.birthday}}</td>
+          <td>{{usuario.gender}}</td>
+          <td>{{usuario.phone}}</td>
+        </tr>
+      </tbody>
+    </table>
+
