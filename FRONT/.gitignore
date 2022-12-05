@@ -1,6 +1,10 @@
-# compiled output
+# Compiled output
 /dist
+/tmp
+/out-tsc
+/bazel-out
 /node_modules
+
 
 # Logs
 logs
@@ -9,14 +13,6 @@ npm-debug.log*
 pnpm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-lerna-debug.log*
-
-# OS
-.DS_Store
-
-# Tests
-/coverage
-/.nyc_output
 
 # IDEs and editors
 /.idea
@@ -33,3 +29,21 @@ lerna-debug.log*
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Tests
+/coverage
+/.nyc_output
+
+
+# Miscellaneous
+/.angular/cache
+.sass-cache/
+/connect.lock
+/coverage
+/libpeerconnection.log
+testem.log
+/typings
+
+# System files
+.DS_Store
+Thumbs.db
