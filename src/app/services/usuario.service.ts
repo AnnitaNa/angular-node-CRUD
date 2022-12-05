@@ -5,13 +5,11 @@ import { IUsuario } from '../models/usuario.model';
 import { IUsuarioInput } from '../models/usuarioInput.model';
 import { UsuarioProxyService } from './usuarioProxy.service';
 
-
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 
 export class UsuarioService {
-
   constructor(private usuarioProxyService: UsuarioProxyService) { }
 
   findAll(): Observable<IUsuario[]> {
@@ -33,5 +31,4 @@ export class UsuarioService {
   remove(id: string): Observable<any> {
     return this.usuarioProxyService.remove(id);
   }
-  
 }

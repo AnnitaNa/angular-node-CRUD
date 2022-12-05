@@ -5,11 +5,10 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 @Component({
   selector: 'app-all-users',
   templateUrl: './all-users.component.html',
-  styleUrls: ['./all-users.component.css']
+  styleUrls: ['./all-users.component.css'],
 })
 export class AllUsersComponent {
-
-  usuarios: IUsuario[] = []
+  usuarios: IUsuario[] = [];
 
   constructor(private userService: UsuarioService) {}
 
@@ -18,15 +17,13 @@ export class AllUsersComponent {
   }
 
   getUsuarios() {
-    this.userService.findAll().subscribe(res => {
-      this.usuarios = res
-    })
+    this.userService.findAll().subscribe((res) => {
+      this.usuarios = res;
+    });
   }
-
 
   deletarUsuario(id: string) {
-    this.userService.remove(id).subscribe(res => {console.log(res)})
+    this.userService.remove(id).subscribe();
     window.location.reload();
   }
-  
 }

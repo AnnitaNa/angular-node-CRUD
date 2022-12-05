@@ -4,15 +4,13 @@ import { Observable } from 'rxjs';
 import { IUsuario } from '../models/usuario.model';
 import { IUsuarioInput } from '../models/usuarioInput.model';
 
-
 const baseUrl: string = 'http://localhost:3000/usuario';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 
 export class UsuarioProxyService {
-
   constructor(private http: HttpClient) { }
 
   findAll(): Observable<IUsuario[]> {
@@ -34,5 +32,4 @@ export class UsuarioProxyService {
   remove(id: string): Observable<any> {
     return this.http.delete(`${baseUrl}/${id}`);
   }
-  
 }
